@@ -2,10 +2,10 @@ import React, { useState, useRef, useEffect } from 'react';
 import '../styles/Homepage.css';
 
 const assistants = [
-  { name: 'Tech-Buddy', image: '/assets/bot1.jpg', intro: "Hi! I'm Tech-Buddy, your coding assistant." },
-  { name: 'Code-Mate', image: '/assets/bot2.jpg', intro: "Hello! Code-Mate here to help you write better code." },
-  { name: 'Project-Pal', image: '/assets/bot3.jpg', intro: "Hey there! Project-Pal at your service for all project queries." },
-  { name: 'Study-Buddy', image: '/assets/bot4.jpg', intro: "Hi! Study-Buddy will help you with study tips and explanations." },
+  { name: 'Tech-Buddy', image: '/assets/bot1.svg', intro: "Hi! I'm Tech-Buddy, your coding assistant." },
+  { name: 'Code-Mate', image: '/assets/bot2.svg', intro: "Hello! Code-Mate here to help you write better code." },
+  { name: 'Project-Pal', image: '/assets/bot3.svg', intro: "Hey there! Project-Pal at your service for all project queries." },
+  { name: 'Study-Buddy', image: '/assets/bot4.svg', intro: "Hi! Study-Buddy will help you with study tips and explanations." },
 ];
 
 const TechTutor = () => {
