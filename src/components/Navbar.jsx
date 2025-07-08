@@ -5,24 +5,13 @@ import './Navbar.css';
 const Navbar = () => {
   return (
     <nav className="nav">
-      <div className="nav-logo">SmartBot<span>.AI</span></div>
-      <ul className="nav-links">
-        <li>
-          <NavLink to="/" end className="nav-link">
-            TechTutor
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/codemate" className="nav-link">
-            CodeMate
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/projectpal" className="nav-link">
-            ProjectPal
-          </NavLink>
-        </li>
-      </ul>
+      <div className="nav-wrapper">
+        <div className="nav-logo">SmartBot<span>.AI</span></div>
+        <div className="auth-buttons">
+          <NavLink to="/signin" className="nav-auth-button">Sign in</NavLink>
+          <NavLink to="/signup" className="nav-auth-button">Sign up</NavLink>
+        </div>
+      </div>
     </nav>
   );
 };

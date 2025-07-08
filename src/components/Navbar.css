@@ -1,45 +1,81 @@
+/* Navbar.css – Refined Premium Colorful Theme for TechTutor */
+
 .nav {
+  width: 100%;
+  background: linear-gradient(to right, #fef9ff, #e0f2fe);
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0.85rem 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background-color: #0f172a;
-  padding: 1rem 2rem;
-  border-bottom: 1px solid #1e293b;
+  justify-content: space-between;
 }
 
 .nav-logo {
-  font-size: 1.6rem;
-  font-weight: bold;
-  color: #60a5fa;
-  letter-spacing: 0.5px;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #7c3aed;
+  letter-spacing: -0.5px;
 }
 
 .nav-logo span {
-  color: #3b82f6;
+  color: #f472b6;
+  font-weight: 700;
 }
 
-.nav-links {
-  list-style: none;
+.auth-buttons {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
-.nav-link {
-  text-decoration: none;
-  color: #cbd5e1;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  transition: 0.3s;
-}
-
-.nav-link:hover {
-  background-color: #1e293b;
-  color: #ffffff;
-}
-
-.nav-link.active {
-  background-color: #2563eb;
+.nav-auth-button {
+  background: linear-gradient(to right, #f472b6, #c084fc);
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 999px;
   color: white;
   font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(236, 72, 153, 0.2);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.nav-auth-button:hover {
+  background: linear-gradient(to right, #ec4899, #a855f7);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(168, 85, 247, 0.3);
+}
+
+@media (max-width: 768px) {
+  .nav-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.5rem 1rem;
+  }
+
+  .nav-logo {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .auth-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .nav-auth-button {
+    width: 100%;
+    text-align: center;
+  }
 }

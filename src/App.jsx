@@ -1,17 +1,17 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import TechTutor from "./pages/TechTutor";
-import CodeMate from "./pages/CodeMate";
-import ProjectPal from "./pages/ProjectPal";
+import Homepage from "./pages/Homepage";
+import Signup from "./pages/Signup";
+import Signin from "./pages/Signin";
 
 function App() {
   return (
     <Router>
       <Navbar />
       <Routes>
-        <Route path="/" element={<TechTutor />} />
-        <Route path="/codemate" element={<CodeMate />} />
-        <Route path="/projectpal" element={<ProjectPal />} />
+        <Route path="/" element={<Homepage />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/signin" element={<Signin />} />
       </Routes>
     </Router>
   );
