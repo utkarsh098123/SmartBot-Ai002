@@ -1,4 +1,0 @@
-- Byte bandits -
-
-Checkpoint 1.00 pm -  Designing the UI for the page.
-Checkpoint 2.00 pm - prototype 1 of platform ui completed.
