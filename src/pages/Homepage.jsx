@@ -28,7 +28,7 @@ const sendMessage = async () => {
 
   const streamURLMap = {
     "Tech-Buddy": "http://localhost:8003/chat/stream",
-    "Code-Mate": "http://127.0.0.1:8110/chat/stream",
+    "Code-Mate": "http://127.0.0.1:8110//chat/stream",
     "Project-Pal": "http://localhost:8002/chat/stream",
     "Study-Buddy": "http://localhost:8004/chat/stream",
   };
