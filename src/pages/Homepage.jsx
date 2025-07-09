@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import '../styles/Homepage.css';
 
-// ✅ Correctly import local images
 import bot1 from '../assets/bot1.jpg';
 import bot2 from '../assets/bot2.jpg';
 import bot3 from '../assets/bot3.jpg';
@@ -77,11 +76,13 @@ const sendMessage = async () => {
   const chooseBot = (bot) => {
     setSelectedBot(bot);
     setMessages([{ from: 'bot', text: bot.intro }]);
+    document.body.style.overflow = 'hidden';
   };
 
   const resetBot = () => {
     setSelectedBot(null);
     setMessages([]);
+    document.body.style.overflow = 'auto';
   };
 
   useEffect(() => {
@@ -89,12 +90,11 @@ const sendMessage = async () => {
   }, [messages]);
 
   return (
-    <div className="smartbot-wrapper">
-      <main className="main-section">
-        <h1 className="main-title">SmartBot<span className="dot-ai">.ai</span></h1>
-        <p className="subtitle">(Your smart coding assistant for quick help & inspiration)</p>
-
-        {!selectedBot ? (
+    <div className="tech-tutor-root">
+      {!selectedBot && (
+        <div className="smartbot-wrapper">
+          <h1 className="main-title">SmartBot<span className="dot-ai">.ai</span></h1>
+          <p className="subtitle">(Your smart coding assistant for quick help & inspiration)</p>
           <div className="assistant-list">
             {assistants.map((assistant, index) => (
               <div key={index} className="assistant-card" onClick={() => chooseBot(assistant)}>
@@ -103,7 +103,11 @@ const sendMessage = async () => {
               </div>
             ))}
           </div>
-        ) : (
+        </div>
+      )}
+
+      {selectedBot && (
+        <div className="chat-full-wrapper">
           <div className="chat-section">
             <div className="chat-header">
               <button className="model-btn" onClick={resetBot}>Switch Assistant</button>
@@ -133,8 +137,8 @@ const sendMessage = async () => {
               <button className="send-btn" onClick={sendMessage}>➔</button>
             </div>
           </div>
-        )}
-      </main>
+        </div>
+      )}
     </div>
   );
 };
