@@ -51,17 +51,17 @@
   border: 1.5px solid transparent;
 }
 
-.nav-auth-button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, #f472b6, #c084fc);
-  opacity: 0.2;
-  transition: left 0.4s ease;
-  z-index: 0;
+.nav-auth-button {
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 999px;
+  color: #7c3aed;
+  font-weight: 600;
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  border: none; /* ← ensure no border */
 }
 
 .nav-auth-button:hover::before {
@@ -73,7 +73,6 @@
   background: linear-gradient(to right, #f472b6, #c084fc);
   box-shadow: 0 6px 18px rgba(168, 85, 247, 0.3);
   transform: translateY(-1.5px);
-  border: none;
 }
 
 .nav-auth-button span {
