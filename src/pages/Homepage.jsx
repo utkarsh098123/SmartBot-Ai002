@@ -1,16 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
 import '../styles/Homepage.css';
 
+// ✅ Correctly import local images
 import bot1 from '../assets/bot1.jpg';
 import bot2 from '../assets/bot2.jpg';
 import bot3 from '../assets/bot3.jpg';
 import bot4 from '../assets/bot4.jpg';
 
 const assistants = [
-  { name: 'Tech-Buddy', image: '/images/tech-buddy.png', intro: "Hi! I'm Tech-Buddy, your coding assistant." },
-  { name: 'Code-Mate', image: '/images/code-mate.png', intro: "Hello! Code-Mate here to help you write better code." },
-  { name: 'Project-Pal', image: '/images/project-pal.png', intro: "Hey there! Project-Pal at your service for all project queries." },
-  { name: 'Study-Buddy', image: '/images/study-buddy.png', intro: "Hi! Study-Buddy will help you with study tips and explanations." },
+  { name: 'Tech-Buddy', image: bot1, intro: "Hi! I'm Tech-Buddy, your coding assistant." },
+  { name: 'Code-Mate', image: bot2, intro: "Hello! Code-Mate here to help you write better code." },
+  { name: 'Project-Pal', image: bot3, intro: "Hey there! Project-Pal at your service for all project queries." },
+  { name: 'Study-Buddy', image: bot4, intro: "Hi! Study-Buddy will help you with study tips and explanations." },
 ];
 
 const TechTutor = () => {
@@ -93,12 +94,11 @@ const TechTutor = () => {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
               />
-             <>
-  <label htmlFor="file-upload" className="file-upload-label">📁 Upload</label>
-  <input id="file-upload" type="file" onChange={handleFileUpload} />
-</>
-
-              <button className="send-btn" onClick={sendMessage}>➤</button>
+              <>
+                <label htmlFor="file-upload" className="file-upload-label">📁 Upload</label>
+                <input id="file-upload" type="file" onChange={handleFileUpload} />
+              </>
+              <button className="send-btn" onClick={sendMessage}>➔</button>
             </div>
           </div>
         )}
