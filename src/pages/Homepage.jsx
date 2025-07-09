@@ -19,48 +19,35 @@ const TechTutor = () => {
   const [selectedBot, setSelectedBot] = useState(null);
   const chatEndRef = useRef(null);
 
-const sendMessage = async () => {
-  const trimmed = input.trim();
-  if (!trimmed) return;
+  const sendMessage = async () => {
+    const trimmed = input.trim();
+    if (!trimmed) return;
 
-  const newMessages = [...messages, { from: 'user', text: trimmed }];
-  setMessages(newMessages);
-  setInput('');
+    const newMessages = [...messages, { from: 'user', text: trimmed }];
+    setMessages(newMessages);
+    setInput('');
 
-  if (selectedBot?.name === "Project-Pal") {
-    // ✅ Project-Pal should call the API
-    try {
-      const response = await fetch("http://localhost:8000/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: trimmed }),
-      });
+    if (selectedBot?.name === "Project-Pal") {
+      try {
+        const response = await fetch("http://localhost:8000/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: trimmed }),
+        });
 
-      const data = await response.json();
+        const data = await response.json();
 
-      setMessages((prev) => [
-        ...prev,
-        { from: 'bot', text: data.reply }
-      ]);
-
-    } catch (error) {
-      console.error(error);
-      setMessages((prev) => [
-        ...prev,
-        { from: 'bot', text: "Oops! Couldn't reach the Project-Pal server." }
-      ]);
+        setMessages((prev) => [...prev, { from: 'bot', text: data.reply }]);
+      } catch (error) {
+        console.error(error);
+        setMessages((prev) => [...prev, { from: 'bot', text: "Oops! Couldn't reach the Project-Pal server." }]);
+      }
+    } else {
+      setTimeout(() => {
+        setMessages((prev) => [...prev, { from: 'bot', text: `This is a response from ${selectedBot?.name}.` }]);
+      }, 500);
     }
-  } else {
-    // ✅ Other bots keep fake replies for now
-    setTimeout(() => {
-      setMessages((prev) => [
-        ...prev,
-        { from: 'bot', text: `This is a response from ${selectedBot?.name}.` }
-      ]);
-    }, 500);
-  }
-};
-
+  };
 
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
@@ -107,13 +94,13 @@ const sendMessage = async () => {
       )}
 
       {selectedBot && (
-        <div className="chat-full-wrapper">
+        <div className="chat-full-wrapper smartbot-wrapper">
           <div className="chat-section">
             <div className="chat-header">
               <button className="model-btn" onClick={resetBot}>Switch Assistant</button>
             </div>
 
-            <div className="chat-box">
+            <div className="chat-box scrollable-box">
               {messages.map((msg, i) => (
                 <div key={i} className={`chat-message ${msg.from}`}>
                   <div className={`chat-bubble ${msg.from}`}>{msg.text}</div>
