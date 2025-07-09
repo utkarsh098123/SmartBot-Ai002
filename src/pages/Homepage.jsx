@@ -30,7 +30,7 @@ const sendMessage = async () => {
     "Tech-Buddy": "http://127.0.0.1:8080/chat/stream",
     "Code-Mate": "http://127.0.0.1:8010/chat/stream",
     "Project-Pal": "http://127.0.0.1:8110/chat/stream",
-    "https://d482619bfbb2.ngrok-free.app",
+    'Study-Buddy": "https://d482619bfbb2.ngrok-free.app",
   };
 
   const url = streamURLMap[selectedBot?.name];
