@@ -18,36 +18,63 @@ const TechTutor = () => {
   const [messages, setMessages] = useState([]);
   const [selectedBot, setSelectedBot] = useState(null);
   const chatEndRef = useRef(null);
+const sendMessage = async () => {
+  const trimmed = input.trim();
+  if (!trimmed) return;
 
-  const sendMessage = async () => {
-    const trimmed = input.trim();
-    if (!trimmed) return;
+  const newMessages = [...messages, { from: 'user', text: trimmed }];
+  setMessages(newMessages);
+  setInput('');
 
-    const newMessages = [...messages, { from: 'user', text: trimmed }];
-    setMessages(newMessages);
-    setInput('');
-
-    if (selectedBot?.name === "Project-Pal") {
-      try {
-        const response = await fetch("http://localhost:8000/chat", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: trimmed }),
-        });
-
-        const data = await response.json();
-
-        setMessages((prev) => [...prev, { from: 'bot', text: data.reply }]);
-      } catch (error) {
-        console.error(error);
-        setMessages((prev) => [...prev, { from: 'bot', text: "Oops! Couldn't reach the Project-Pal server." }]);
-      }
-    } else {
-      setTimeout(() => {
-        setMessages((prev) => [...prev, { from: 'bot', text: `This is a response from ${selectedBot?.name}.` }]);
-      }, 500);
-    }
+  const streamURLMap = {
+    "Tech-Buddy": "http://localhost:8003/chat/stream",
+    "Code-Mate": "http://127.0.0.1:8110/chat/stream",
+    "Project-Pal": "http://localhost:8002/chat/stream",
+    "Study-Buddy": "http://localhost:8004/chat/stream",
   };
+
+  const url = streamURLMap[selectedBot?.name];
+  if (!url) {
+    setMessages((prev) => [...prev, { from: 'bot', text: `This is a response from ${selectedBot?.name}.` }]);
+    return;
+  }
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt: trimmed }),
+    });
+
+    if (!response.body) throw new Error("No response body");
+
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder("utf-8");
+    let fullText = "";
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      const chunk = decoder.decode(value, { stream: true });
+      fullText += chunk;
+
+      setMessages((prev) => {
+        const last = prev[prev.length - 1];
+        if (last?.from === 'bot') {
+          return [...prev.slice(0, -1), { from: 'bot', text: fullText }];
+        } else {
+          return [...prev, { from: 'bot', text: fullText }];
+        }
+      });
+    }
+
+  } catch (error) {
+    console.error(error);
+    setMessages((prev) => [...prev, { from: 'bot', text: "⚠️ Oops! Failed to stream response from the server." }]);
+  }
+};
+
 
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
