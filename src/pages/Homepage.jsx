@@ -1,11 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
 import '../styles/Homepage.css';
 
+import bot1 from '../assets/bot1.jpg';
+import bot2 from '../assets/bot2.jpg';
+import bot3 from '../assets/bot3.jpg';
+import bot4 from '../assets/bot4.jpg';
+
 const assistants = [
-  { name: 'Tech-Buddy', image: '/assets/bot1.svg', intro: "Hi! I'm Tech-Buddy, your coding assistant." },
-  { name: 'Code-Mate', image: '/assets/bot2.svg', intro: "Hello! Code-Mate here to help you write better code." },
-  { name: 'Project-Pal', image: '/assets/bot3.svg', intro: "Hey there! Project-Pal at your service for all project queries." },
-  { name: 'Study-Buddy', image: '/assets/bot4.svg', intro: "Hi! Study-Buddy will help you with study tips and explanations." },
+  { name: 'Tech-Buddy', image: '/images/tech-buddy.png', intro: "Hi! I'm Tech-Buddy, your coding assistant." },
+  { name: 'Code-Mate', image: '/images/code-mate.png', intro: "Hello! Code-Mate here to help you write better code." },
+  { name: 'Project-Pal', image: '/images/project-pal.png', intro: "Hey there! Project-Pal at your service for all project queries." },
+  { name: 'Study-Buddy', image: '/images/study-buddy.png', intro: "Hi! Study-Buddy will help you with study tips and explanations." },
 ];
 
 const TechTutor = () => {
@@ -23,6 +28,17 @@ const TechTutor = () => {
     setTimeout(() => {
       setMessages((prev) => [...prev, { from: 'bot', text: 'This is a response from AI.' }]);
     }, 500);
+  };
+
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setMessages((prev) => [
+        ...prev,
+        { from: 'user', text: `📁 Uploaded: ${file.name}` },
+        { from: 'bot', text: 'File received! I will process it soon.' }
+      ]);
+    }
   };
 
   const chooseBot = (bot) => {
@@ -77,6 +93,11 @@ const TechTutor = () => {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
               />
+             <>
+  <label htmlFor="file-upload" className="file-upload-label">📁 Upload</label>
+  <input id="file-upload" type="file" onChange={handleFileUpload} />
+</>
+
               <button className="send-btn" onClick={sendMessage}>➤</button>
             </div>
           </div>

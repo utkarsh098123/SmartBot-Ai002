@@ -1,15 +1,22 @@
-/* Signup.css – Premium Colorful Form Design with Success Animation */
+/* Signup.css – Premium Colorful Form Design (Shifted Below Navbar) */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
-.signup-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: linear-gradient(to right, #fef9ff, #e0f2fe);
-  padding: 1rem;
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
   font-family: 'Inter', sans-serif;
+}
+
+.signup-container {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(to right, #fef9ff, #e0f2fe);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 100px; /* Space below navbar */
   position: relative;
 }
 
@@ -74,7 +81,7 @@
 /* Success Message */
 .signup-success {
   position: absolute;
-  top: 5%;
+  top: 3%;
   background: linear-gradient(135deg, #38f9d7, #43e97b);
   color: #fff;
   padding: 1rem 1.5rem;
@@ -85,6 +92,8 @@
   z-index: 10;
   width: 100%;
   max-width: 360px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .signup-success .checkmark {
@@ -97,11 +106,11 @@
 @keyframes fadeSlideDown {
   from {
     opacity: 0;
-    transform: translateY(-15px);
+    transform: translate(-50%, -15px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate(-50%, 0);
   }
 }
 

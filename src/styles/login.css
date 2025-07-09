@@ -1,19 +1,28 @@
-/* Signin.css – Premium Colorful Form Design with Success Animation */
+/* login.css – Updated to position login below navbar in center */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
-.signin-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: linear-gradient(to right, #fef9ff, #e0f2fe);
-  padding: 1rem;
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
   font-family: 'Inter', sans-serif;
-  position: relative;
 }
 
-.signin-form {
+.login-container {
+  min-height: calc(100vh - 80px); /* Adjust based on navbar height */
+  width: 100%;
+  background: linear-gradient(to right, #fef9ff, #e0f2fe);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 100px; /* Space below navbar */
+  padding-bottom: 2rem;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.login-form {
   background: #ffffff;
   padding: 2rem 2.5rem;
   border-radius: 1.5rem;
@@ -26,12 +35,12 @@
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.signin-form.fade-out {
+.login-form.fade-out {
   opacity: 0.3;
   transform: scale(0.98);
 }
 
-.signin-form h2 {
+.login-form h2 {
   margin-bottom: 0.5rem;
   font-size: 1.75rem;
   font-weight: 700;
@@ -39,7 +48,7 @@
   text-align: center;
 }
 
-.signin-form input {
+.login-form input {
   padding: 0.75rem 1rem;
   border: 1px solid #e0e0e0;
   border-radius: 0.75rem;
@@ -48,12 +57,12 @@
   transition: border 0.3s ease;
 }
 
-.signin-form input:focus {
+.login-form input:focus {
   border-color: #a855f7;
   box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.15);
 }
 
-.signin-form button {
+.login-form button {
   padding: 0.75rem 1rem;
   background: linear-gradient(to right, #f472b6, #c084fc);
   color: white;
@@ -66,15 +75,17 @@
   box-shadow: 0 4px 12px rgba(236, 72, 153, 0.25);
 }
 
-.signin-form button:hover {
+.login-form button:hover {
   background: linear-gradient(to right, #ec4899, #a855f7);
   transform: translateY(-1px);
 }
 
 /* Success Message */
-.signin-success {
+.login-success {
   position: absolute;
   top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
   background: linear-gradient(135deg, #38f9d7, #43e97b);
   color: #fff;
   padding: 1rem 1.5rem;
@@ -87,7 +98,7 @@
   max-width: 360px;
 }
 
-.signin-success .checkmark {
+.login-success .checkmark {
   font-size: 1.75rem;
   font-weight: bold;
   margin-bottom: 0.3rem;
@@ -97,11 +108,11 @@
 @keyframes fadeSlideDown {
   from {
     opacity: 0;
-    transform: translateY(-15px);
+    transform: translate(-50%, -15px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate(-50%, 0);
   }
 }
 
