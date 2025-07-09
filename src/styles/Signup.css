@@ -1,4 +1,3 @@
-/* Signup.css – Premium Colorful Form Design (Shifted Below Navbar) */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
@@ -16,7 +15,7 @@ html, body {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding-top: 100px; /* Space below navbar */
+  padding-top: 100px; 
   position: relative;
 }
 
@@ -79,7 +78,7 @@ html, body {
   transform: translateY(-1px);
 }
 
-/* Success Message */
+
 .signup-success {
   position: absolute;
   top: 3%;
